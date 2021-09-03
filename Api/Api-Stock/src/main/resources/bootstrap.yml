@@ -1,0 +1,41 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: api-stock
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+# 开启Feign的Hystrix开关
+feign:
+  #开启feign对hystrix的支持 默认是关闭
+  hystrix:
+    enabled: true
+# 设置Hystrix超时时长
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+# 配置openfeign中ribbon的连接时长和服务响应时长
+ribbon:
+  #请求连接的超时时间,默认一秒，默认毫秒值
+  ConnectTimeout: 3000
+  #请求处理的超时时间,默认一秒，默认毫秒值
+  ReadTimeout: 3000
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  level:
+    com.mall.stock.feign.StockFeign: debug
+

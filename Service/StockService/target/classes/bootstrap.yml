@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: stock-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 78b8bd2a-d47e-4531-9e68-c3a9b85ed7f6
+      config:
+        group: mall
+        file-extension: yaml
+        server-addr: 127.0.0.1:8848
+        namespace: 78b8bd2a-d47e-4531-9e68-c3a9b85ed7f6
+        prefix: ${spring.application.name}
+        refresh-enabled: true
+  mybatis-plus:
+    mapper-locations: classpath*:mapper/*.xml
+
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/lottery?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: 123456
+#    druid:
+#      initial-size: 5 #连接池初始化大小
+#      min-idle: 10 #最小空闲连接数
+#      max-active: 20 #最大连接数
+#      web-stat-filter:
+#        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
+#      stat-view-servlet: #访问监控网页的登录用户名和密码
+#        login-username: druid
+#        login-password: druid

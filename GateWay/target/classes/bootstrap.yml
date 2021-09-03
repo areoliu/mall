@@ -1,0 +1,10 @@
+server:
+  port: 8889
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 78b8bd2a-d47e-4531-9e68-c3a9b85ed7f6
