@@ -1,3 +1,8 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /oms
+
 spring:
   application:
     name: order-service
@@ -7,14 +12,36 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
-        namespace: 78b8bd2a-d47e-4531-9e68-c3a9b85ed7f6
-      config:
-        group: mall
-        file-extension: yaml
-        server-addr: 127.0.0.1:8848
-        namespace: 78b8bd2a-d47e-4531-9e68-c3a9b85ed7f6
-        prefix: ${spring.application.name}
-        refresh: true
+        #namespace: 78b8bd2a-d47e-4531-9e68-c3a9b85ed7f6
+        namespace: 0c424171-ff94-4716-a150-ed5d3ccc51d8
+#      config:
+#        group: mall
+#        file-extension: yaml
+#        server-addr: 127.0.0.1:8848
+#        namespace: 78b8bd2a-d47e-4531-9e68-c3a9b85ed7f6
+#        prefix: ${spring.application.name}
+#        refresh: true
+
+  #redis配置
+  redis:
+    host: localhost
+    port: 6379
+  #
+  #mysql配置
+  datasource:
+    url: jdbc:mysql://10.6.136.57:21500/lottery?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    druid:
+      initial-size: 5 #连接池初始化大小
+      min-idle: 10 #最小空闲连接数
+      max-active: 20 #最大连接数
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
+      stat-view-servlet: #访问监控网页的登录用户名和密码
+        login-username: druid
+        login-password: druid
+
   mybatis-plus:
     mapper-locations: classpath*:mapper/*.xml
 
@@ -23,28 +50,13 @@ management:
     web:
       exposure:
         include: '*'
-#server:
-#  port: 8081
-#spring:
-#  //redis配置
-#  redis:
-#    host: localhost
-#    port: 6379
-##
-#  //mysql配置
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/lottery?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-#    username: root
-#    password: 123456
-#    druid:
-#      initial-size: 5 #连接池初始化大小
-#      min-idle: 10 #最小空闲连接数
-#      max-active: 20 #最大连接数
-#      web-stat-filter:
-#        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
-#      stat-view-servlet: #访问监控网页的登录用户名和密码
-#        login-username: druid
-#        login-password: druid
+
+feign:
+  hystrix:
+    enabled: true
+
+
+
 
 
 

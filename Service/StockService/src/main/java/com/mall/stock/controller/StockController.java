@@ -5,10 +5,7 @@ import com.mall.common.model.Result;
 import com.mall.stock.dto.StockDto;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,7 +27,16 @@ public class StockController {
     @LogAnno(fun="库存",des = "锁定",type = "修改")
     @PostMapping("/lock")
     public Result lock(@RequestBody List<StockDto> list){
-        log.info("system output loc");
+        log.info("system output lock");
+        return  new Result().Success();
+
+    }
+
+    @ApiOperation("锁定库存")
+    @LogAnno(fun="库存",des = "锁定",type = "修改")
+    @GetMapping("/lock2")
+    public Result lock2(){
+        log.info("system output lock");
         return  new Result().Success();
 
     }

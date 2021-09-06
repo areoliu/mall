@@ -4,9 +4,9 @@ import com.mall.common.enums.ResultCodeEnum;
 import com.mall.common.exception.BusinessException;
 import com.mall.common.log.LogAnno;
 import com.mall.common.model.Result;
-import com.mall.oms.entity.OrderInfo;
 import com.mall.oms.service.OrderInfoService;
 import com.mall.oms.vo.OrderVo;
+
 import com.mall.stock.dto.StockDto;
 import com.mall.stock.feign.StockFeign;
 import io.swagger.annotations.ApiOperation;
@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-@RequestMapping("/orders")
 @RestController
+@RequestMapping("/order")
 public class OrderController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class OrderController {
 
     }
 
-    @PostMapping("/test")
+    @GetMapping("/test")
     @ApiOperation("测试")
     @LogAnno(fun="订单管理",des = "创建订单",type = "新增")
     public Result<OrderVo> test(){

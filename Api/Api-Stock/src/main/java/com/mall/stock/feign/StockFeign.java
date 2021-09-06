@@ -1,15 +1,12 @@
 package com.mall.stock.feign;
 
-import com.mall.stock.dto.StockDto;
-
 import com.mall.common.model.Result;
-import com.mall.stock.feign.fallback.StockFeignFallback;
+import com.mall.stock.dto.StockDto;
 import com.mall.stock.feign.fallback.StockFeignFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -21,9 +18,12 @@ import java.util.List;
  * @Version 1.0
  **/
 
-@FeignClient(value="stock-service", fallbackFactory = StockFeignFallbackFactory.class)
+@FeignClient(name="stock-service", path = "/sts",fallbackFactory = StockFeignFallbackFactory.class, configuration = FeignConfiguration.class)
 public interface StockFeign {
 
-    @PostMapping("/stock/lock")
+    @RequestMapping(value = "/stock/lock", method = RequestMethod.POST)
     public Result lock(@RequestBody List<StockDto> list);
+
+    @RequestMapping(value = "/stock/lock2", method = RequestMethod.GET)
+    public Result lock2();
 }

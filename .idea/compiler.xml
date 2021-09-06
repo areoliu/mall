@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="AccountService" />
+        <module name="GateWay" />
+        <module name="StockService" />
+        <module name="OrderService" />
+        <module name="Api-Stock" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AccountService" target="1.8" />
+      <module name="Api" target="1.8" />
+      <module name="Api-Stock" target="1.8" />
+      <module name="Common" target="1.8" />
+      <module name="domin" target="1.8" />
+      <module name="GateWay" target="1.8" />
+      <module name="mall" target="1.8" />
+      <module name="OrderService" target="1.8" />
+      <module name="Service" target="1.8" />
+      <module name="StockService" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AccountService" options="-parameters" />
+      <module name="Api-Stock" options="-parameters" />
+      <module name="Common" options="-parameters" />
+      <module name="GateWay" options="-parameters" />
+      <module name="OrderService" options="-parameters" />
+      <module name="StockService" options="-parameters" />
+      <module name="domin" options="-parameters" />
+    </option>
+  </component>
+</project>

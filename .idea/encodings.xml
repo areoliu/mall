@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api/Api-Stock" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/GateWay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service/AccountService" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service/OrderService" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service/StockService" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/domin" charset="UTF-8" />
+  </component>
+</project>

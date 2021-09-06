@@ -9,6 +9,7 @@
         <module>Service</module>
         <module>Api</module>
         <module>GateWay</module>
+        <module>domin</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -28,12 +29,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

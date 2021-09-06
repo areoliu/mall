@@ -15,15 +15,22 @@ import java.util.List;
  * @Version 1.0
  **/
 
+@Component
 public class StockFeignFallback implements StockFeign {
-    private Throwable throwable;
-
-    StockFeignFallback(Throwable throwable) {
-        this.throwable = throwable;
-    }
+//    private Throwable throwable;
+//
+//    StockFeignFallback(Throwable throwable) {
+//        this.throwable = throwable;
+//    }
 
     @Override
     public Result lock(List<StockDto> list) {
+
         return new Result().Fail("服务异常，锁定库存失败");
+    }
+
+    @Override
+    public Result lock2() {
+        return null;
     }
 }

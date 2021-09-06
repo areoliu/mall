@@ -8,19 +8,18 @@ import com.mall.common.exception.BusinessException;
 import com.mall.common.model.Result;
 import com.mall.common.util.RedisUtil;
 import com.mall.common.util.SnowFlakeIdWorker;
-import com.mall.oms.common.Constants;
 import com.mall.oms.dao.OrderInfoMapper;
 import com.mall.oms.dao.OrderItemMapper;
 import com.mall.oms.dto.CartSkuDto;
 import com.mall.oms.entity.OrderInfo;
 import com.mall.oms.entity.OrderItem;
 import com.mall.oms.entity.Sku;
+
 import com.mall.oms.service.CartService;
 import com.mall.oms.service.OrderInfoService;
 import com.mall.oms.service.SkuService;
 import com.mall.stock.dto.StockDto;
 import com.mall.stock.feign.StockFeign;
-import com.mysql.cj.x.protobuf.MysqlxCrud;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @ClassName OrderInfoServiceImpl

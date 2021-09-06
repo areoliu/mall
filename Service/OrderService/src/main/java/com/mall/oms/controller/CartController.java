@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-@RequestMapping("/cart")
 @RestController
+@RequestMapping("/cart")
 @Api( "购物车接口")
 public class CartController {
 
