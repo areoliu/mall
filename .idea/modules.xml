@@ -6,10 +6,15 @@
       <module fileurl="file://$PROJECT_DIR$/Api/Api.iml" filepath="$PROJECT_DIR$/Api/Api.iml" />
       <module fileurl="file://$PROJECT_DIR$/Api/Api-Stock/Api-Stock.iml" filepath="$PROJECT_DIR$/Api/Api-Stock/Api-Stock.iml" />
       <module fileurl="file://$PROJECT_DIR$/Common/Common.iml" filepath="$PROJECT_DIR$/Common/Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common/Core/Core.iml" filepath="$PROJECT_DIR$/Common/Core/Core.iml" />
       <module fileurl="file://$PROJECT_DIR$/GateWay/GateWay.iml" filepath="$PROJECT_DIR$/GateWay/GateWay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common/Log/Log.iml" filepath="$PROJECT_DIR$/Common/Log/Log.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Model/Model.iml" filepath="$PROJECT_DIR$/Model/Model.iml" />
       <module fileurl="file://$PROJECT_DIR$/Service/OrderService/OrderService.iml" filepath="$PROJECT_DIR$/Service/OrderService/OrderService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common/Redis/Redis.iml" filepath="$PROJECT_DIR$/Common/Redis/Redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/Service/Service.iml" filepath="$PROJECT_DIR$/Service/Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/Service/StockService/StockService.iml" filepath="$PROJECT_DIR$/Service/StockService/StockService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common/Swagger/Swagger.iml" filepath="$PROJECT_DIR$/Common/Swagger/Swagger.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/mall.iml" filepath="$PROJECT_DIR$/.idea/mall.iml" />
     </modules>
   </component>

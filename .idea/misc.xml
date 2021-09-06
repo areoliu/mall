@@ -11,6 +11,11 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/Common/core/pom.xml" />
+        <option value="$PROJECT_DIR$/Common/kafka/pom.xml" />
+        <option value="$PROJECT_DIR$/Common/log/pom.xml" />
+        <option value="$PROJECT_DIR$/Common/redis/pom.xml" />
+        <option value="$PROJECT_DIR$/Common/swagger/pom.xml" />
         <option value="$PROJECT_DIR$/domin/pom.xml" />
       </set>
     </option>

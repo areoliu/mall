@@ -12,6 +12,12 @@
     <artifactId>Common</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>Core</module>
+        <module>Redis</module>
+        <module>Swagger</module>
+        <module>Log</module>
+    </modules>
 
     <dependencies>
         <dependency>

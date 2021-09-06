@@ -7,9 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Log" />
+        <module name="Model" />
         <module name="AccountService" />
-        <module name="GateWay" />
+        <module name="Swagger" />
         <module name="StockService" />
+        <module name="Core" />
+        <module name="GateWay" />
+        <module name="Redis" />
         <module name="OrderService" />
         <module name="Api-Stock" />
       </profile>
@@ -19,12 +24,17 @@
       <module name="Api" target="1.8" />
       <module name="Api-Stock" target="1.8" />
       <module name="Common" target="1.8" />
+      <module name="Core" target="1.8" />
       <module name="domin" target="1.8" />
       <module name="GateWay" target="1.8" />
+      <module name="Log" target="1.8" />
       <module name="mall" target="1.8" />
+      <module name="Model" target="1.8" />
       <module name="OrderService" target="1.8" />
+      <module name="Redis" target="1.8" />
       <module name="Service" target="1.8" />
       <module name="StockService" target="1.8" />
+      <module name="Swagger" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -32,9 +42,14 @@
       <module name="AccountService" options="-parameters" />
       <module name="Api-Stock" options="-parameters" />
       <module name="Common" options="-parameters" />
+      <module name="Core" options="-parameters" />
       <module name="GateWay" options="-parameters" />
+      <module name="Log" options="-parameters" />
+      <module name="Model" options="-parameters" />
       <module name="OrderService" options="-parameters" />
+      <module name="Redis" options="-parameters" />
       <module name="StockService" options="-parameters" />
+      <module name="Swagger" options="-parameters" />
       <module name="domin" options="-parameters" />
     </option>
   </component>

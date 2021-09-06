@@ -9,7 +9,7 @@
         <module>Service</module>
         <module>Api</module>
         <module>GateWay</module>
-        <module>domin</module>
+        <module>Model</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
