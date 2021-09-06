@@ -8,6 +8,7 @@
     <file url="file://$PROJECT_DIR$/Common/Core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Common/Log" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Common/Redis" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Common/RocketMq" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Common/Swagger" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Common/core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Common/kafka" charset="UTF-8" />

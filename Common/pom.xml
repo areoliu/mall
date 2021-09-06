@@ -17,6 +17,7 @@
         <module>Redis</module>
         <module>Swagger</module>
         <module>Log</module>
+        <module>RocketMq</module>
     </modules>
 
     <dependencies>

@@ -13,6 +13,7 @@
         <module name="Swagger" />
         <module name="StockService" />
         <module name="Core" />
+        <module name="RocketMq" />
         <module name="GateWay" />
         <module name="Redis" />
         <module name="OrderService" />
@@ -32,6 +33,7 @@
       <module name="Model" target="1.8" />
       <module name="OrderService" target="1.8" />
       <module name="Redis" target="1.8" />
+      <module name="RocketMq" target="1.8" />
       <module name="Service" target="1.8" />
       <module name="StockService" target="1.8" />
       <module name="Swagger" target="1.8" />
@@ -48,6 +50,7 @@
       <module name="Model" options="-parameters" />
       <module name="OrderService" options="-parameters" />
       <module name="Redis" options="-parameters" />
+      <module name="RocketMq" options="-parameters" />
       <module name="StockService" options="-parameters" />
       <module name="Swagger" options="-parameters" />
       <module name="domin" options="-parameters" />

@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/Model/Model.iml" filepath="$PROJECT_DIR$/Model/Model.iml" />
       <module fileurl="file://$PROJECT_DIR$/Service/OrderService/OrderService.iml" filepath="$PROJECT_DIR$/Service/OrderService/OrderService.iml" />
       <module fileurl="file://$PROJECT_DIR$/Common/Redis/Redis.iml" filepath="$PROJECT_DIR$/Common/Redis/Redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common/RocketMq/RocketMq.iml" filepath="$PROJECT_DIR$/Common/RocketMq/RocketMq.iml" />
       <module fileurl="file://$PROJECT_DIR$/Service/Service.iml" filepath="$PROJECT_DIR$/Service/Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/Service/StockService/StockService.iml" filepath="$PROJECT_DIR$/Service/StockService/StockService.iml" />
       <module fileurl="file://$PROJECT_DIR$/Common/Swagger/Swagger.iml" filepath="$PROJECT_DIR$/Common/Swagger/Swagger.iml" />
