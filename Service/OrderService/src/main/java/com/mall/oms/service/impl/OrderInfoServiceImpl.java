@@ -177,6 +177,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
     @Override
     public void cancel(Long orderId) {
+        OrderInfo orderInfo = orderInfoMapper.
 
     }
 

@@ -8,5 +8,6 @@ import java.util.List;
 
 
 public interface OrderItemMapper extends BaseMapper<OrderItem> {
+
     public void insertBatch(@Param(value = "list") List<OrderItem> orderItemList);
 }

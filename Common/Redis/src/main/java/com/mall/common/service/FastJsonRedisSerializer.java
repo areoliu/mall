@@ -1,4 +1,4 @@
-package com.mall.common.config;
+package com.mall.common.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.ParserConfig;

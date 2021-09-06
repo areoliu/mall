@@ -9,7 +9,7 @@ spring:
         server-addr: 127.0.0.1:8848
         #namespace: 78b8bd2a-d47e-4531-9e68-c3a9b85ed7f6
         namespace: 0c424171-ff94-4716-a150-ed5d3ccc51d8
-#      config:
+#      service:
 #        group: mall
 #        file-extension: yaml
 #        server-addr: 127.0.0.1:8848

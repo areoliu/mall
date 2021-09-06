@@ -1,4 +1,4 @@
-package com.mall.common.config;
+package com.mall.common.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
