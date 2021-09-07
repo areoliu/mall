@@ -51,7 +51,7 @@ public class RocMqProducerServiceImpl implements RocMqProducerService {
             }
 
         }
-        producer.shutdown();
+        //producer.shutdown();
 
     }
 
@@ -85,7 +85,7 @@ public class RocMqProducerServiceImpl implements RocMqProducerService {
             }
 
         }
-        producer.shutdown();
+        //producer.shutdown();
 
     }
 
@@ -118,7 +118,7 @@ public class RocMqProducerServiceImpl implements RocMqProducerService {
             }
 
         }
-        producer.shutdown();
+        //producer.shutdown();
 
     }
 

@@ -56,6 +56,7 @@ public class OrderController {
         RocMqMessage rocketMqMessage = new RocMqMessage();
         rocketMqMessage.setKey("1111");
         rocketMqMessage.setData("1111");
+        rocketMqMessage.setTopic("oms");
         List<RocMqMessage> rocMqMessages = new ArrayList<>();
         rocMqMessages.add(rocketMqMessage);
         //延时取消通知
