@@ -1,5 +1,7 @@
 package com.mall.oms.service;
 
+import com.mall.oms.entity.OrderInfo;
+
 public interface OrderInfoService {
 
     //创建订单

@@ -1,6 +1,6 @@
 package com.mall.stock.feign.fallback;
 
-import com.mall.stock.dto.StockDto;
+import com.mall.model.dto.StockDto;
 import com.mall.stock.feign.StockFeign;
 import com.mall.common.model.Result;
 import org.springframework.stereotype.Component;

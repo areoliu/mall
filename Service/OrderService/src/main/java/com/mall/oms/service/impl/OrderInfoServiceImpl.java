@@ -6,8 +6,11 @@ import com.mall.common.enums.PayEnum;
 import com.mall.common.enums.ResultCodeEnum;
 import com.mall.common.exception.BusinessException;
 import com.mall.common.model.Result;
+import com.mall.common.model.RocMqMessage;
+import com.mall.common.service.RocMqProducerService;
 import com.mall.common.util.RedisUtil;
 import com.mall.common.util.SnowFlakeIdWorker;
+import com.mall.model.dto.StockDto;
 import com.mall.oms.dao.OrderInfoMapper;
 import com.mall.oms.dao.OrderItemMapper;
 import com.mall.oms.dto.CartSkuDto;
@@ -18,7 +21,6 @@ import com.mall.oms.entity.Sku;
 import com.mall.oms.service.CartService;
 import com.mall.oms.service.OrderInfoService;
 import com.mall.oms.service.SkuService;
-import com.mall.stock.dto.StockDto;
 import com.mall.stock.feign.StockFeign;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +62,8 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     @Autowired
     StockFeign stcokFeign;
 
+    @Autowired
+    RocMqProducerService rocMqProducerService;
 
 
     @Override
@@ -170,14 +174,30 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             cartService.delete(cartSkuDto);
         });
 
-
+        RocMqMessage rocketMqMessage = new RocMqMessage();
+        rocketMqMessage.setKey(orderInfo.getId()+"");
+        rocketMqMessage.setData(orderInfo.getId());
+        List<RocMqMessage> list = new ArrayList<>();
+        list.add(rocketMqMessage);
         //延时取消通知
+        rocMqProducerService.delaySend(list,1);
 
     }
 
     @Override
     public void cancel(Long orderId) {
-        OrderInfo orderInfo = orderInfoMapper.
+        OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
+        if(null == orderInfo){
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单不存在");
+        }
+        if(!orderInfo.getOrderStatus().equals( OrderEnum.ORDER__FINISH.getCode())){
+            orderInfo.setOrderStatus(OrderEnum.ORDER__CANCEL.getCode());
+            orderInfoMapper.updateById(orderInfo);
+
+        }
+        else{
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单已取消");
+        }
 
     }
 

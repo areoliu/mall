@@ -1,4 +1,4 @@
-package com.mall.common;
+package com.mall.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,11 +14,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RocketMqMessage<T> {
+public class RocMqMessage<T> {
 
     private String key;
 
     private String topic;
+
+    private String group;
 
     private T  data;
 

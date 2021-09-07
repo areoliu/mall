@@ -14,7 +14,7 @@ spring:
         server-addr: localhost:8848
         #namespace: 78b8bd2a-d47e-4531-9e68-c3a9b85ed7f6
         namespace: 0c424171-ff94-4716-a150-ed5d3ccc51d8
-#      config:
+#      service:
 #        group: mall
 #        file-extension: yaml
 #        server-addr: 127.0.0.1:8848
@@ -54,6 +54,33 @@ management:
 feign:
   hystrix:
     enabled: true
+
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    isOnOff: on
+    topic: oms
+    send-message-timeout: 10000
+    group: ${spring.application.name}
+    #消息最大长度 默认1024*4(4M)
+    maxMessageSize: 4096
+    #发送消息超时时间,默认3000
+    sendMsgTimeout: 3000
+    #发送消息失败重试次数，默认2
+    retryTimesWhenSendFailed: 2
+  ###consumer
+  ##该应用是否启用消费者
+  consumer:
+    topic: oms
+    isOnOff: on
+    group: ${spring.application.name}
+    consumeThreadMin: 20
+    consumeThreadMax: 64
+    #设置一次消费消息的条数，默认为1条
+    consumeMessageBatchMaxSize: 1
+
+
 
 
 

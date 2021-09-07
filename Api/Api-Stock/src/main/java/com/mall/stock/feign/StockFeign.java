@@ -1,7 +1,7 @@
 package com.mall.stock.feign;
 
 import com.mall.common.model.Result;
-import com.mall.stock.dto.StockDto;
+import com.mall.model.dto.StockDto;
 import com.mall.stock.feign.fallback.StockFeignFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;

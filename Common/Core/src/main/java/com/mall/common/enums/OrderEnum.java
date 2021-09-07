@@ -14,7 +14,8 @@ public enum OrderEnum {
     ORDER__SORT(4, "待出库",""),
     ORDER__OUT(5, "待配送",""),
     ORDER__DELVERY(6, "待收货",""),
-    ORDER__FINISH(7, "交易完成","");
+    ORDER__FINISH(7, "交易完成",""),
+    ORDER__CANCEL(8, "交易取消","");
 
     private Integer code;
     private String message;
