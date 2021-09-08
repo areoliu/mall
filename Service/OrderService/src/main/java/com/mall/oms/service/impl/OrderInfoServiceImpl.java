@@ -25,6 +25,7 @@ import com.mall.stock.feign.StockFeign;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,13 +46,13 @@ import java.util.List;
 @Slf4j
 public class OrderInfoServiceImpl implements OrderInfoService {
 
-    @Autowired
+    @Resource
     CartService cartService;
 
-    @Autowired
+    @Resource
     SkuService skuService;
 
-    @Autowired
+    @Resource
     RedisUtil redisUtil;
 
     @Resource
@@ -60,11 +61,20 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     @Resource
     OrderItemMapper orderItemMapper;
 
-    @Autowired
+    @Resource
     StockFeign stcokFeign;
 
-    @Autowired
+    @Resource
     RocMqProducerService rocMqProducerService;
+
+    @Value("${rocketmq.producer.group}")
+    private String group;
+
+    @Value("${rocketmq.producer.topic}")
+    private String topic;
+
+    @Value("${rocketmq.producer.tag}")
+    private String tag;
 
 
     @Override
@@ -175,13 +185,15 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             cartService.delete(cartSkuDto);
         });
 
-//        RocMqMessage rocketMqMessage = new RocMqMessage();
-//        rocketMqMessage.setKey(orderInfo.getId()+"");
-//        rocketMqMessage.setData(orderInfo.getId());
-////        List<RocMqMessage> list = new ArrayList<>();
-////        list.add(rocketMqMessage);
-//        //延时取消通知
-//        rocMqProducerService.synSend(rocketMqMessage);
+        RocMqMessage rocketMqMessage = new RocMqMessage();
+        rocketMqMessage.setKey(orderInfo.getId()+"");
+        rocketMqMessage.setData(orderInfo.getId());
+        rocketMqMessage.setTags(tag);
+        rocketMqMessage.setTopic(topic);
+        rocketMqMessage.setGroup(group);
+
+        //延时取消通知
+        rocMqProducerService.delaySend(rocketMqMessage,5);
 
     }
 
@@ -193,6 +205,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         }
         if(!orderInfo.getOrderStatus().equals( OrderEnum.ORDER__FINISH.getCode())){
             orderInfo.setOrderStatus(OrderEnum.ORDER__CANCEL.getCode());
+            orderInfo.setUpdateDate(new Date());
             orderInfoMapper.updateById(orderInfo);
 
         }

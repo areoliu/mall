@@ -1,5 +1,7 @@
 package com.mall.oms.common;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class Constants {
     public static String ORDER_SKU_REDIS_PREFIX="Sku:";
     public static String ORDER_CART_REDIS_PREFIX="Cart:";

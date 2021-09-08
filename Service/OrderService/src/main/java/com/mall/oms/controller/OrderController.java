@@ -50,12 +50,7 @@ public class OrderController {
     @ApiOperation("测试")
     @LogAnno(fun="订单管理",des = "创建订单",type = "新增")
     public Result<OrderVo> test() throws MQClientException {
-        List<StockDto> list =new ArrayList<>();
-        StockDto stockDto = new StockDto();
-        stockDto.setSkuNum(1);
-        stockDto.setSkuId(1L);
-        list.add(stockDto);
-        Result result = stockFeign.lock(list);
+
         RocMqMessage rocketMqMessage = new RocMqMessage();
         rocketMqMessage.setKey("1111");
         rocketMqMessage.setData("1111");
@@ -66,12 +61,7 @@ public class OrderController {
         //延时取消通知
         rocMqProducerService.synSend(rocketMqMessage);
 
-        if(result==null){
-            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"锁定库存失败");
-        }
-        if(!result.getCode().equals(ResultCodeEnum.SUCCESS.getCode())){
-            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),result.getMessage());
-        }
+
         return new Result().Success();
 
     }
