@@ -2,7 +2,7 @@ package com.mall.stock.controller;
 
 import com.mall.common.log.LogAnno;
 import com.mall.common.model.Result;
-import com.mall.stock.dto.StockDto;
+import com.mall.model.dto.StockDto;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

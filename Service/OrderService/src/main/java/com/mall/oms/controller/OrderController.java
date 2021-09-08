@@ -13,6 +13,8 @@ import com.mall.oms.vo.OrderVo;
 import com.mall.stock.feign.StockFeign;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.client.exception.MQClientException;
+import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +36,7 @@ public class OrderController {
     @Autowired
     RocMqProducerService rocMqProducerService;
 
+
     @PostMapping("/create/{userId}")
     @ApiOperation("创建订单")
     @LogAnno(fun="订单管理",des = "创建订单",type = "新增")
@@ -46,7 +49,7 @@ public class OrderController {
     @GetMapping("/test")
     @ApiOperation("测试")
     @LogAnno(fun="订单管理",des = "创建订单",type = "新增")
-    public Result<OrderVo> test(){
+    public Result<OrderVo> test() throws MQClientException {
         List<StockDto> list =new ArrayList<>();
         StockDto stockDto = new StockDto();
         stockDto.setSkuNum(1);
@@ -56,11 +59,42 @@ public class OrderController {
         RocMqMessage rocketMqMessage = new RocMqMessage();
         rocketMqMessage.setKey("1111");
         rocketMqMessage.setData("1111");
+        rocketMqMessage.setGroup("order-service");
+        rocketMqMessage.setTags("tag1");
         rocketMqMessage.setTopic("oms");
-        List<RocMqMessage> rocMqMessages = new ArrayList<>();
-        rocMqMessages.add(rocketMqMessage);
+
         //延时取消通知
-        rocMqProducerService.delaySend(rocMqMessages,1);
+        rocMqProducerService.synSend(rocketMqMessage);
+
+        if(result==null){
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"锁定库存失败");
+        }
+        if(!result.getCode().equals(ResultCodeEnum.SUCCESS.getCode())){
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),result.getMessage());
+        }
+        return new Result().Success();
+
+    }
+
+    @GetMapping("/test2/{delayLevel}")
+    @ApiOperation("测试")
+    @LogAnno(fun="订单管理",des = "创建订单",type = "新增")
+    public Result<OrderVo> test2(@PathVariable Integer delayLevel) throws MQClientException {
+        List<StockDto> list =new ArrayList<>();
+        StockDto stockDto = new StockDto();
+        stockDto.setSkuNum(1);
+        stockDto.setSkuId(1L);
+        list.add(stockDto);
+        Result result = stockFeign.lock(list);
+        RocMqMessage rocketMqMessage = new RocMqMessage();
+        rocketMqMessage.setKey("2222");
+        rocketMqMessage.setData("222222");
+        rocketMqMessage.setGroup("order-service");
+        rocketMqMessage.setTags("tag2");
+        rocketMqMessage.setTopic("oms");
+        //延时取消通知
+        rocMqProducerService.delaySend(rocketMqMessage,delayLevel);
+
         if(result==null){
             throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"锁定库存失败");
         }

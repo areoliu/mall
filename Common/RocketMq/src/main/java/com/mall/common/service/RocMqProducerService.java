@@ -2,6 +2,7 @@ package com.mall.common.service;
 
 import com.mall.common.model.RocMqMessage;
 import org.apache.rocketmq.client.exception.MQClientException;
+import org.apache.rocketmq.client.producer.DefaultMQProducer;
 
 import java.util.List;
 
@@ -12,13 +13,13 @@ import java.util.List;
  * @Date 2021/9/6 22:02
  * @Version 1.0
  **/
-public interface RocMqProducerService {
+public interface RocMqProducerService <T>{
 
-    public void synSend(List<RocMqMessage> messages) throws MQClientException;
+    public void synSend(RocMqMessage message) throws MQClientException;
 
-    public void asynSend(List<RocMqMessage> messages);
+    public void asynSend(RocMqMessage message);
 
-    public void orderSend(List<RocMqMessage> messages);
+    public void orderSend(RocMqMessage message);
 
-    public void delaySend(List<RocMqMessage> messages,Integer delayLevel);
+    public void delaySend(RocMqMessage message, Integer delayLevel);
 }

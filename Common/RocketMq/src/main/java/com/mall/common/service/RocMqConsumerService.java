@@ -1,5 +1,6 @@
 package com.mall.common.service;
 
+import com.mall.common.model.RocMqMessage;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,5 +16,5 @@ import java.util.List;
  **/
 public interface RocMqConsumerService {
 
-    public void consumer(String data);
+    public void consumer(RocMqMessage message);
 }

@@ -23,6 +23,7 @@ import com.mall.oms.service.OrderInfoService;
 import com.mall.oms.service.SkuService;
 import com.mall.stock.feign.StockFeign;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.client.exception.MQClientException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,7 +69,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void create(Long userId) {
+    public void create(Long userId)  {
         //风控检查用户
 
 
@@ -174,13 +175,13 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             cartService.delete(cartSkuDto);
         });
 
-        RocMqMessage rocketMqMessage = new RocMqMessage();
-        rocketMqMessage.setKey(orderInfo.getId()+"");
-        rocketMqMessage.setData(orderInfo.getId());
-        List<RocMqMessage> list = new ArrayList<>();
-        list.add(rocketMqMessage);
-        //延时取消通知
-        rocMqProducerService.delaySend(list,1);
+//        RocMqMessage rocketMqMessage = new RocMqMessage();
+//        rocketMqMessage.setKey(orderInfo.getId()+"");
+//        rocketMqMessage.setData(orderInfo.getId());
+////        List<RocMqMessage> list = new ArrayList<>();
+////        list.add(rocketMqMessage);
+//        //延时取消通知
+//        rocMqProducerService.synSend(rocketMqMessage);
 
     }
 
