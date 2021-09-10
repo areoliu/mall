@@ -18,6 +18,7 @@
         <module>Swagger</module>
         <module>Log</module>
         <module>RocketMq</module>
+        <module>Sharedjdbc</module>
     </modules>
 
     <dependencies>
