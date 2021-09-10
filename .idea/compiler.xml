@@ -7,17 +7,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Log" />
-        <module name="Model" />
-        <module name="AccountService" />
+        <module name="Redis" />
+        <module name="RocketMq" />
+        <module name="Sharedjdbc" />
+        <module name="Api-Stock" />
         <module name="Swagger" />
         <module name="StockService" />
-        <module name="Core" />
-        <module name="RocketMq" />
+        <module name="AccountService" />
         <module name="GateWay" />
-        <module name="Redis" />
+        <module name="Log" />
         <module name="OrderService" />
-        <module name="Api-Stock" />
+        <module name="UserService" />
+        <module name="Core" />
+        <module name="Model" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -35,8 +37,10 @@
       <module name="Redis" target="1.8" />
       <module name="RocketMq" target="1.8" />
       <module name="Service" target="1.8" />
+      <module name="Sharedjdbc" target="1.8" />
       <module name="StockService" target="1.8" />
       <module name="Swagger" target="1.8" />
+      <module name="UserService" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -51,8 +55,10 @@
       <module name="OrderService" options="-parameters" />
       <module name="Redis" options="-parameters" />
       <module name="RocketMq" options="-parameters" />
+      <module name="Sharedjdbc" options="-parameters" />
       <module name="StockService" options="-parameters" />
       <module name="Swagger" options="-parameters" />
+      <module name="UserService" options="-parameters" />
       <module name="domin" options="-parameters" />
     </option>
   </component>
