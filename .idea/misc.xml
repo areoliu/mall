@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/Api/pom.xml" />
         <option value="$PROJECT_DIR$/GateWay/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/Common/Sharedjdbc/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
