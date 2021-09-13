@@ -17,7 +17,7 @@ public class UserController {
 
     @GetMapping("/user/{id}")
     public String test(@PathVariable Long id){
-        User user = userService.getUser(id);
+        User user = userService.getById(id);
         return JSON.toJSONString(user);
 
 

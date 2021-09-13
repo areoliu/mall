@@ -58,6 +58,11 @@
             <artifactId>Model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.example</groupId>-->
+<!--            <artifactId>Sharedjdbc</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>Sharedjdbc</artifactId>

@@ -15,6 +15,7 @@
         <module>OrderService</module>
         <module>StockService</module>
         <module>AccountService</module>
+        <module>UserService</module>
     </modules>
 
 

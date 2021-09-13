@@ -1,8 +1,9 @@
 package com.mall.user.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.mall.user.entity.User;
 
-public interface IUserService {
+public interface IUserService extends IService<User> {
 
-    public User getUser(Long id);
+
 }

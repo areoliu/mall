@@ -1,0 +1,34 @@
+
+spring:
+  shardingsphere:
+    datasource:
+      names: test0,test1
+      test0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://10.6.136.57:21500/lottery_0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
+        username: root
+        password: 123456
+      test1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://10.6.136.57:21500/lottery_1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
+        username: root
+        password: 123456
+    sharding:
+      default-database-strategy:
+        inline:
+          sharding-column: id
+          algorithm-expression: test$->{id % 2}
+      tables:
+        user:
+          actual-data-nodes: test$->{0..1}.user_$->{0..2}
+          table-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: user_$->{id%3}
+    props:
+      sql:
+        show:
+          true
+
+server:
+  port: 9001
