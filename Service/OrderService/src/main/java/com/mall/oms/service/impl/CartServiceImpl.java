@@ -2,13 +2,18 @@ package com.mall.oms.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mall.common.enums.CartEnum;
 import com.mall.common.enums.ResultCodeEnum;
 import com.mall.common.enums.SkuEnmu;
 import com.mall.common.exception.BusinessException;
 import com.mall.common.util.RedisUtil;
 import com.mall.oms.common.Constants;
+import com.mall.oms.dao.CartMapper;
+import com.mall.oms.dao.OrderInfoMapper;
 import com.mall.oms.dto.CartSkuDto;
+import com.mall.oms.entity.Cart;
+import com.mall.oms.entity.OrderInfo;
 import com.mall.oms.entity.Sku;
 import com.mall.oms.service.CartService;
 import com.mall.oms.service.SkuService;
@@ -26,7 +31,7 @@ import java.util.Map;
 
 @Service
 @Slf4j
-public class CartServiceImpl implements CartService {
+public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements CartService {
 
 //    @Resource
 //    CartMapper orderCartMapper;

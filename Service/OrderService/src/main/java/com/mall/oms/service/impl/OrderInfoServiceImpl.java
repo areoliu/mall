@@ -1,5 +1,6 @@
 package com.mall.oms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mall.common.enums.ClientEnum;
 import com.mall.common.enums.OrderEnum;
 import com.mall.common.enums.PayEnum;
@@ -20,6 +21,7 @@ import com.mall.oms.entity.Sku;
 
 import com.mall.oms.service.CartService;
 import com.mall.oms.service.OrderInfoService;
+import com.mall.oms.service.OrderItemService;
 import com.mall.oms.service.SkuService;
 import com.mall.stock.feign.StockFeign;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +46,7 @@ import java.util.List;
  **/
 @Service
 @Slf4j
-public class OrderInfoServiceImpl implements OrderInfoService {
+public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo> implements OrderInfoService {
 
     @Resource
     CartService cartService;
@@ -59,7 +61,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     OrderInfoMapper orderInfoMapper;
 
     @Resource
-    OrderItemMapper orderItemMapper;
+    OrderItemService orderItemService;
 
     @Resource
     StockFeign stcokFeign;
@@ -163,7 +165,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
         //创建订单
         orderInfoMapper.insert(orderInfo);
-        orderItemMapper.insertBatch(orderItemList);
+        orderItemService.insertBatch(orderItemList);
 
 
 

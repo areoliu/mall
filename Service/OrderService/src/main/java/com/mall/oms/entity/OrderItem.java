@@ -42,4 +42,6 @@ public class OrderItem implements Serializable {
 
     private BigDecimal payAmount;
 
+    private Long user_id;
+
 }

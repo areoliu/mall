@@ -7,19 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Redis" />
-        <module name="RocketMq" />
-        <module name="Sharedjdbc" />
-        <module name="Api-Stock" />
-        <module name="Swagger" />
-        <module name="StockService" />
-        <module name="AccountService" />
-        <module name="GateWay" />
-        <module name="Log" />
-        <module name="OrderService" />
         <module name="UserService" />
-        <module name="Core" />
+        <module name="AccountService" />
         <module name="Model" />
+        <module name="StockService" />
+        <module name="GateWay" />
+        <module name="Api-Stock" />
+        <module name="OrderService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

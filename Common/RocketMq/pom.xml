@@ -10,6 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>RocketMq</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.rocketmq</groupId>
@@ -21,6 +24,7 @@
             <artifactId>Core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
     </dependencies>
 
 </project>

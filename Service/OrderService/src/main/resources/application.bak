@@ -31,14 +31,22 @@ spring:
       default-database-strategy:
         inline:
           sharding-column: id
-          algorithm-expression: ds$->{id % 2}
+          algorithm-expression: ds$->{order_user_id % 2}
       tables:
-        user:
-          actual-data-nodes: ds$->{0..1}.user_$->{0..2}
+        oms_order_info:
+          actual-data-nodes: ds$->{0..1}.oms_order_info_$->{0..2}
           table-strategy:
             inline:
               sharding-column: id
-              algorithm-expression: user_$->{id%3}
+              algorithm-expression: oms_order_info_$->{order_user_id%3}
+        oms_order_item:
+          actual-data-nodes: ds$->{0..1}.oms_order_item_$->{0..2}
+          table-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: oms_order_item_$->{order_user_id%3}
+      binding-tables: oms_order_info,oms_order_item
+
       master-slave-rules:
         ds0:
           master-data-source-name: m0
@@ -61,33 +69,3 @@ spring:
         with:
           cipher:
             column: true
-
-server:
-  port: 9001
-
-rocketmq:
-  name-server: 127.0.0.1:9876
-  producer:
-    isOnOff: on
-    topic: oms
-    send-message-timeout: 10000
-    group: ${spring.application.name}
-    #消息最大长度 默认1024*4(4M)
-    maxMessageSize: 4096
-    #发送消息超时时间,默认3000
-    sendMsgTimeout: 3000
-    #发送消息失败重试次数，默认2
-    retryTimesWhenSendFailed: 2
-    tag: tag1
-  ###consumer
-  ##该应用是否启用消费者
-  consumer:
-    topic: oms
-    isOnOff: on
-    group: ${spring.application.name}
-    consumeThreadMin: 20
-    consumeThreadMax: 64
-    tag: tag1
-    #设置一次消费消息的条数，默认为1条
-    consumeMessageBatchMaxSize: 1
-    instance: instance

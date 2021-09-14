@@ -1,9 +1,10 @@
 package com.mall.oms.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.mall.oms.entity.OrderInfo;
 import org.apache.rocketmq.client.exception.MQClientException;
 
-public interface OrderInfoService {
+public interface OrderInfoService extends IService<OrderInfo> {
 
     //创建订单
     public void create(Long userId) ;
