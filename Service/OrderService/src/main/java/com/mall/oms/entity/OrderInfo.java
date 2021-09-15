@@ -38,7 +38,7 @@ public class OrderInfo implements Serializable {
     //收货信息
     private String orderUserName;
 
-    private Integer orderUserId;
+    private Long orderUserId;
 
     private String province;
 

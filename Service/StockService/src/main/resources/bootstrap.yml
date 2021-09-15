@@ -24,7 +24,9 @@ spring:
   #
   #mysql配置
   datasource:
-    url: jdbc:mysql://10.6.136.57:21500/lottery?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/lottery_0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
+
+#    url: jdbc:mysql://10.6.136.57:21500/lottery?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     druid:

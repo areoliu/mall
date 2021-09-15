@@ -29,15 +29,21 @@ spring:
     sharding:
       default-database-strategy:
         inline:
-          sharding-column: id
-          algorithm-expression: ds$->{id % 2}
+          sharding-column: order_user_id
+          algorithm-expression: ds$->{order_user_id % 2}
       tables:
-        user:
-          actual-data-nodes: ds$->{0..1}.user_$->{0..2}
+        oms_order_info:
+          actual-data-nodes: ds$->{0..1}.oms_order_info_$->{0..2}
           table-strategy:
             inline:
-              sharding-column: id
-              algorithm-expression: user_$->{id%3}
+              sharding-column: order_user_id
+              algorithm-expression: oms_order_info_$->{order_user_id%3}
+        oms_order_item:
+          actual-data-nodes: ds$->{0..1}.oms_order_item_$->{0..2}
+          table-strategy:
+            inline:
+              sharding-column: user_id
+              algorithm-expression: oms_order_item_$->{user_id%3}
       master-slave-rules:
         ds0:
           master-data-source-name: m0
@@ -45,6 +51,8 @@ spring:
         ds1:
           master-data-source-name: m1
           slave-data-source-names: s1
+      binding-tables: oms_order_info,oms_order_item
+      default-data-source-name: m0
     # *** 数据库分库分表配置 start
 
     props:

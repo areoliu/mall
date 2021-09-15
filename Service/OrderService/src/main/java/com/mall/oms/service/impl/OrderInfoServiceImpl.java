@@ -103,6 +103,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         orderInfo.setCreateDate(new Date());
         orderInfo.setOrderStatus(OrderEnum.ORDER_NEW.getCode());
         orderInfo.setOrderSource(ClientEnum.ANDROID_APP.getCode());
+
         //商品详情
         for(CartSkuDto cartSkuDto: cartSkuDtoList){
             if(cartSkuDto.getIsChoose()==1){
@@ -114,6 +115,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
                 OrderItem orderItem = new OrderItem();
                 orderItem.setDiscountAmount(new BigDecimal(5));
                 orderItem.setQuantity(cartSkuDto.getSkuNum());
+                orderItem.setUserId(cartSkuDto.getUserId());
                 if(orderItem.getQuantity()>sku.getStock()){
                     throw new BusinessException(ResultCodeEnum.FAIL.getCode(),orderItem.getSkuName()+"库存不足");
                 }
@@ -127,6 +129,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
                 stockDto.setSkuId(cartSkuDto.getSkuId());
                 stockDto.setSkuNum(cartSkuDto.getSkuNum());
                 stockDtos.add(stockDto);
+                orderInfo.setOrderUserId(cartSkuDto.getUserId());
 
             }
 
@@ -136,7 +139,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
 
 
         //收货信息
-        orderInfo.setOrderUserId(1);
+        //orderInfo.setOrderUserId(1);
         orderInfo.setOrderUserName("liul");
         orderInfo.setPhone("13488857615");
         orderInfo.setProvince("北京");
@@ -195,7 +198,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         rocketMqMessage.setGroup(group);
 
         //延时取消通知
-        rocMqProducerService.delaySend(rocketMqMessage,5);
+       // rocMqProducerService.delaySend(rocketMqMessage,5);
 
     }
 

@@ -19,12 +19,15 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 
 @Slf4j
 @Service("rocMqProducerServiceImpl")
+@Transactional(propagation = Propagation.NESTED)
 public class RocMqProducerServiceImpl<T> implements RocMqProducerService<T> {
 
 
@@ -43,7 +46,7 @@ public class RocMqProducerServiceImpl<T> implements RocMqProducerService<T> {
             String destination = message.getTopic()+":"+message.getTags();
             SendResult sendResult = rocketMQTemplate.syncSend(destination,msg);
             if(!sendResult.getSendStatus().equals(SendStatus.SEND_OK)){
-                System.out.println("redis 持久化");
+                log.info("redis 持久化");
                 throw  new BusinessException(ResultCodeEnum.FAIL.getCode(),"Send message failed,message key："+message.getKey()+" "+sendResult.getSendStatus().name());
 
             }
@@ -51,7 +54,7 @@ public class RocMqProducerServiceImpl<T> implements RocMqProducerService<T> {
 
         }catch (Exception e){
             //log.error(new Date()+"<<<<<<Send message failed,message key：{}",message.getKey(),"{}",e.getMessage());
-            System.out.println("redis 持久化");
+            log.info("redis 持久化");
             throw  new BusinessException(ResultCodeEnum.FAIL.getCode(),"Send message failed,message key："+message.getKey()+" "+e.getMessage());
 
 
@@ -98,6 +101,7 @@ public class RocMqProducerServiceImpl<T> implements RocMqProducerService<T> {
     }
 
     @Override
+
     public void delaySend(RocMqMessage message, Integer delayLevel) {
         //DefaultMQProducer producer = build();
         try{
