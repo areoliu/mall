@@ -7,13 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="UserService" />
         <module name="AccountService" />
-        <module name="Model" />
         <module name="StockService" />
+        <module name="UserService" />
         <module name="GateWay" />
-        <module name="Api-Stock" />
         <module name="OrderService" />
+        <module name="Api-Stock" />
+        <module name="Nacos" />
+        <module name="Model" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -27,6 +28,7 @@
       <module name="Log" target="1.8" />
       <module name="mall" target="1.8" />
       <module name="Model" target="1.8" />
+      <module name="Nacos" target="1.8" />
       <module name="OrderService" target="1.8" />
       <module name="Redis" target="1.8" />
       <module name="RocketMq" target="1.8" />
@@ -46,6 +48,7 @@
       <module name="GateWay" options="-parameters" />
       <module name="Log" options="-parameters" />
       <module name="Model" options="-parameters" />
+      <module name="Nacos" options="-parameters" />
       <module name="OrderService" options="-parameters" />
       <module name="Redis" options="-parameters" />
       <module name="RocketMq" options="-parameters" />

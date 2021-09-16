@@ -4,12 +4,12 @@
 
     <insert id="insertBatch" parameterType="java.util.List">
         insert into oms_order_item(
-        id,order_info_id,sku_id,sku_name,quantity,pay_amount,sku_price
+        id,order_info_id,sku_id,sku_name,quantity,pay_amount,sku_price,user_id
         ) values
         <!-- conllertion就是mapper方法的入参 item就是随便给list中每个元素起个名字 separator表示每次遍历后的分隔符（自动去除最后一个多余的）-->
         <foreach collection="list" item="item" separator=",">
             (
-            #{item.id},#{item.orderInfoId},#{item.skuId},#{item.skuName},#{item.quantity},#{item.payAmount},#{item.skuPrice}
+            #{item.id},#{item.orderInfoId},#{item.skuId},#{item.skuName},#{item.quantity},#{item.payAmount},#{item.skuPrice},#{item.userId}
             )
         </foreach>
     </insert>

@@ -198,7 +198,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         rocketMqMessage.setGroup(group);
 
         //延时取消通知
-       // rocMqProducerService.delaySend(rocketMqMessage,5);
+        rocMqProducerService.delaySend(rocketMqMessage,5);
 
     }
 

@@ -15,6 +15,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/Api/Nacos/pom.xml" />
         <option value="$PROJECT_DIR$/Common/core/pom.xml" />
         <option value="$PROJECT_DIR$/Common/kafka/pom.xml" />
         <option value="$PROJECT_DIR$/Common/log/pom.xml" />

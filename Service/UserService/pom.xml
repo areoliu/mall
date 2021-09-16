@@ -38,12 +38,11 @@
 <!--            <artifactId>sharding-jdbc-spring-namespace</artifactId>-->
 <!--            <version>4.0.0</version>-->
 <!--        </dependency>-->
-<!--&lt;!&ndash;         引入mysql驱动包&ndash;&gt;-->
+<!--         引入mysql驱动包-->
 <!--        <dependency>-->
 <!--            <groupId>mysql</groupId>-->
 <!--            <artifactId>mysql-connector-java</artifactId>-->
-<!--            <scope>runtime</scope>-->
-<!--            <optional>true</optional>-->
+<!--            <version>8.0.25</version>-->
 <!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>com.alibaba</groupId>-->
@@ -61,28 +60,6 @@
 <!--            <artifactId>fastjson</artifactId>-->
 <!--            <version>1.2.70</version>-->
 <!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>com.example</groupId>-->
-<!--            <artifactId>Core</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.example</groupId>-->
-<!--            <artifactId>Sharedjdbc</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.example</groupId>-->
-<!--            <artifactId>Log</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.example</groupId>-->
-<!--            <artifactId>Swagger</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>Redis</artifactId>

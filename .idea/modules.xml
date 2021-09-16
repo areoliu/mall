@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/GateWay/GateWay.iml" filepath="$PROJECT_DIR$/GateWay/GateWay.iml" />
       <module fileurl="file://$PROJECT_DIR$/Common/Log/Log.iml" filepath="$PROJECT_DIR$/Common/Log/Log.iml" />
       <module fileurl="file://$PROJECT_DIR$/Model/Model.iml" filepath="$PROJECT_DIR$/Model/Model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common/Nacos/Nacos.iml" filepath="$PROJECT_DIR$/Common/Nacos/Nacos.iml" />
       <module fileurl="file://$PROJECT_DIR$/Service/OrderService/OrderService.iml" filepath="$PROJECT_DIR$/Service/OrderService/OrderService.iml" />
       <module fileurl="file://$PROJECT_DIR$/Common/Redis/Redis.iml" filepath="$PROJECT_DIR$/Common/Redis/Redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/Common/RocketMq/RocketMq.iml" filepath="$PROJECT_DIR$/Common/RocketMq/RocketMq.iml" />

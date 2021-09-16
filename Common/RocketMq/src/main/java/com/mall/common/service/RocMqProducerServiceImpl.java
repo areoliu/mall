@@ -21,13 +21,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 
 @Slf4j
 @Service("rocMqProducerServiceImpl")
-@Transactional(propagation = Propagation.NESTED)
 public class RocMqProducerServiceImpl<T> implements RocMqProducerService<T> {
 
 
@@ -100,8 +98,8 @@ public class RocMqProducerServiceImpl<T> implements RocMqProducerService<T> {
 
     }
 
+    @Transactional(propagation = Propagation.NESTED, rollbackFor = Exception.class)
     @Override
-
     public void delaySend(RocMqMessage message, Integer delayLevel) {
         //DefaultMQProducer producer = build();
         try{

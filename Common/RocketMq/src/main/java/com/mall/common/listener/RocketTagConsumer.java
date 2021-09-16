@@ -33,7 +33,7 @@ public class RocketTagConsumer implements RocketMQListener<RocMqMessage>{
     @Override
     public void onMessage(RocMqMessage message) {
         log.info("start consume "+message.getData());
-//        rocMqConsumerService.consumer(message);
+        rocMqConsumerService.consumer(message);
         log.info("end consume");
     }
 
