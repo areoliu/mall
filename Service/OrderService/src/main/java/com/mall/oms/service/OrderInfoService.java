@@ -6,11 +6,14 @@ import org.apache.rocketmq.client.exception.MQClientException;
 
 public interface OrderInfoService extends IService<OrderInfo> {
 
+    //确认订单
+    public void confirmOrder();
+
     //创建订单
-    public void create(Long userId) ;
+    public void createOrder(Long userId) ;
 
     //取消订单
-    public void cancel(Long orderId);
+    public void cancelTimeOutOOrder(Long orderId);
 
     //支付订单
     public void pay(Long orderId);

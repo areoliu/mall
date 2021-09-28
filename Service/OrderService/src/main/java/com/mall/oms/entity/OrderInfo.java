@@ -20,7 +20,7 @@ public class OrderInfo implements Serializable {
     //订单信息
     private Long id;
 
-   // private String orderNo;
+    private String orderNo;
 
     private BigDecimal orderAmount;
 
@@ -33,7 +33,7 @@ public class OrderInfo implements Serializable {
 
     private BigDecimal marketDiscountAmount;
 
-
+    private BigDecimal freightAmount;
 
     //收货信息
     private String orderUserName;
@@ -55,6 +55,7 @@ public class OrderInfo implements Serializable {
     private String shipNo;
 
     private String shipName;
+
 
     //支付信息
 

@@ -7,14 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Model" />
         <module name="AccountService" />
         <module name="StockService" />
         <module name="UserService" />
         <module name="GateWay" />
-        <module name="OrderService" />
         <module name="Api-Stock" />
         <module name="Nacos" />
-        <module name="Model" />
+        <module name="OrderService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
