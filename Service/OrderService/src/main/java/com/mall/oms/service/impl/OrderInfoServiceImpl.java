@@ -13,8 +13,11 @@ import com.mall.common.util.RedisUtil;
 import com.mall.common.util.SnowFlakeIdWorker;
 import com.mall.model.dto.StockDto;
 import com.mall.oms.dao.OrderInfoMapper;
-import com.mall.oms.dao.OrderItemMapper;
 import com.mall.oms.dto.CartSkuDto;
+import com.mall.oms.dto.ConfirmOrderDto;
+import com.mall.oms.entity.Coupon;
+import com.mall.oms.dto.OrderPara;
+import com.mall.oms.entity.ReceiveAddress;
 import com.mall.oms.entity.OrderInfo;
 import com.mall.oms.entity.OrderItem;
 import com.mall.oms.entity.Sku;
@@ -25,8 +28,6 @@ import com.mall.oms.service.OrderItemService;
 import com.mall.oms.service.SkuService;
 import com.mall.stock.feign.StockFeign;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.rocketmq.client.exception.MQClientException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +37,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @ClassName OrderInfoServiceImpl
@@ -80,17 +83,31 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
 
 
     @Override
+    public ConfirmOrderDto confirmOrder() {
+        //风控检查
+        ConfirmOrderDto result = new ConfirmOrderDto();
+        //获取商品列表
+        List<CartSkuDto> cartSkuDtoList = cartService.getCartList(1L);
+        if(cartSkuDtoList.size()==0){
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"购物车为空");
+        }
+        //获取收货地址列表
+        List<ReceiveAddress> receiveAddressList = new ArrayList<>();
+        //获取优惠券列表
+        List<Coupon> couponList = new ArrayList<>();
+        //获取满减折扣活动列表
+        return result;
+
+
+
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
-    public void create(Long userId)  {
+    public Map<String, Object> createOrder(OrderPara orderPara)  {
         //风控检查用户
 
-
-        //从redis获取用户购物车数据
-//        Map<Object , Object> cartMap = redisUtil.hGetAll(Constants.getCartKey(userId));
-//        if(cartMap.isEmpty()){
-//            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"购物车为空");
-//
-//        }
+        Long userId =1L;
         List<CartSkuDto> cartSkuDtoList = cartService.getCartList(userId);
         if(cartSkuDtoList.size()==0){
             throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"购物车为空");
@@ -199,29 +216,105 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
 
         //延时取消通知
         rocMqProducerService.delaySend(rocketMqMessage,5);
+        Map<String, Object> map = new ConcurrentHashMap<>();
+        map.put("order",orderInfo);
+
+
+        return map;
 
     }
 
     @Override
-    public void cancel(Long orderId) {
+    @Transactional(rollbackFor = Exception.class)
+    public void cancelTimeOutOOrder(Long orderId) {
         OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
         if(null == orderInfo){
             throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单不存在");
         }
-        if(!orderInfo.getOrderStatus().equals( OrderEnum.ORDER__FINISH.getCode())){
+        if(orderInfo.getOrderStatus().equals( OrderEnum.ORDER__FINISH.getCode())){
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单已完成，无法取消");
+
+        }
+        if(orderInfo.getOrderStatus().equals( OrderEnum.ORDER__CANCEL.getCode())){
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单已取消");
+        }
+        if(!orderInfo.getOrderStatus().equals( OrderEnum.ORDER_NEW.getCode())){
             orderInfo.setOrderStatus(OrderEnum.ORDER__CANCEL.getCode());
             orderInfo.setUpdateDate(new Date());
             orderInfoMapper.updateById(orderInfo);
 
         }
         else{
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单状态异常，请稍后再试");
+        }
+
+
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void cancelOrder(Long orderId) {
+        OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
+        if(null == orderInfo){
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单不存在");
+        }
+        if(orderInfo.getOrderStatus().equals( OrderEnum.ORDER__FINISH.getCode())){
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单已完成，无法取消");
+        }
+        if(orderInfo.getOrderStatus().equals( OrderEnum.ORDER__CANCEL.getCode())){
             throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单已取消");
+        }
+        if(orderInfo.getOrderStatus().equals( OrderEnum.ORDER_NEW.getCode())){
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单待支付，请求方法错误");
+        }
+        else{
+            //取消订单
+            orderInfo.setOrderStatus(OrderEnum.ORDER__CANCEL.getCode());
+            orderInfo.setUpdateDate(new Date());
+            orderInfoMapper.updateById(orderInfo);
+            //退还资金
+
+
+            List<StockDto> list = new ArrayList<>();
+            //返回库存
+            stcokFeign.release(list);
         }
 
     }
 
     @Override
-    public void pay(Long orderId) {
+    public Map<String, Object> pay(Long orderId) {
+
+        OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
+        if(null == orderInfo){
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单不存在");
+        }
+        if(orderInfo.getOrderStatus().equals( OrderEnum.ORDER__CANCEL.getCode())){
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单已取消");
+        }
+        if(orderInfo.getOrderStatus().equals( OrderEnum.ORDER_NEW.getCode())){
+            orderInfo.setOrderStatus(OrderEnum.ORDER_PAY.getCode());
+            orderInfoMapper.updateById(orderInfo);
+            Map<String, Object> map = new ConcurrentHashMap<>();
+            map.put("order",orderInfo);
+            return map;
+        }
+        else{
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单已支付，请不要重复更新订单状态");
+        }
+
+    }
+
+    @Override
+    public void deleteOrder(Long orderId) {
+        OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
+        if(null == orderInfo){
+            throw new BusinessException(ResultCodeEnum.FAIL.getCode(),"订单不存在");
+        }
+        if(orderInfo.getIsDelete()==0){
+            orderInfo.setIsDelete(1);
+            orderInfoMapper
+        }
 
     }
 

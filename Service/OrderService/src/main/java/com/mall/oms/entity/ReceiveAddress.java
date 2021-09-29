@@ -1,4 +1,4 @@
-package com.mall.oms.dto;
+package com.mall.oms.entity;
 
 public class ReceiveAddress {
 

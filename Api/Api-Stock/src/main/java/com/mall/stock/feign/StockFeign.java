@@ -26,4 +26,7 @@ public interface StockFeign {
 
     @RequestMapping(value = "/stock/lock2", method = RequestMethod.GET)
     public Result lock2();
+
+    @RequestMapping(value = "/stock/release", method = RequestMethod.POST)
+    public Result release(@RequestBody List<StockDto> list);
 }

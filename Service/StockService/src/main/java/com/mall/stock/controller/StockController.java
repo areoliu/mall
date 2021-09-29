@@ -40,4 +40,13 @@ public class StockController {
         return  new Result().Success();
 
     }
+
+    @ApiOperation("锁定库存")
+    @LogAnno(fun="库存",des = "返回库存",type = "修改")
+    @PostMapping("/release")
+    public Result release(@RequestBody List<StockDto> list){
+        log.info("system output lock");
+        return  new Result().Success();
+
+    }
 }

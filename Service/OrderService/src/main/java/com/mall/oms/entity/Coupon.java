@@ -1,4 +1,4 @@
-package com.mall.oms.dto;
+package com.mall.oms.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -61,5 +61,6 @@ public class Coupon {
 
     @ApiModelProperty(value = "可领取的会员类型：0->无限时")
     private Integer memberLevel;
+
 
 }

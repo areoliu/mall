@@ -32,6 +32,11 @@ public class StockFeignFallbackFactory implements FallbackFactory<StockFeign> {
             public Result lock2() {
                 return new Result().Fail("服务异常，锁定库存失败");
             }
+
+            @Override
+            public Result release(List<StockDto> list) {
+                return new Result().Fail("服务异常，释放库存失败");
+            }
         };
     }
 }
