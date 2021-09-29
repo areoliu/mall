@@ -313,7 +313,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         }
         if(orderInfo.getIsDelete()==0){
             orderInfo.setIsDelete(1);
-            orderInfoMapper
+            
         }
 
     }
